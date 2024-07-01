@@ -119,10 +119,9 @@
                             $user2 = mysqli_fetch_array($result2);
                             echo "<td align='center'>" . $user2['name'] . "</td>";
                             echo "<td align='center'>" . $user['date_of_register'] . "</td>";
-                            echo ("<td align='center'><a href=\"../edit_data/edit-parent.php?parent_id=".$user['id']."\">Edit</a></td>");
-                            echo ("<td align='center'><a href=\"../remove_data/remove-parent.php?parent_id=".$user['id']."\">Remove</a></td>");
+                            echo "<td align='center'><a href=\"../edit_data/edit-parent.php?parent_id=".$user['id']."\">Edit</a></td>";
+                            echo "<td align='center'><a href=\"../remove_data/remove-parent.php?parent_id=".$user['id']."\">Remove</a></td>";
                             echo "</tr>";
-
                         }
                     }
                 }
