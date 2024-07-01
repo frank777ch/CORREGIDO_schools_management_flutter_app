@@ -74,6 +74,35 @@ Se ha modificado .....
    ```
 
 
+**institutions/show_data/search-parents.php**:
+   Anteriormente se realizaba un echo usando () lo cual es propenso a errores si se quiere imprimir mas de un parametro
+```php
+   echo ("<td align='center'><a href=\"../edit_data/edit-parent.php?parent_id=".$user['id']."\">Edit</a></td>");
+   echo ("<td align='center'><a href=\"../remove_data/remove-parent.php?parent_id=".$user['id']."\">Remove</a></td>");
+   ```
+   Se ha modificado para robustecer el codigo
+   ```php
+   if (mysqli_num_rows($result) > 0) {
+                        while ($user = mysqli_fetch_array($result)) {
+                            if ($user['school_id'] == (int)$_SESSION['id']) {
+                            $id = $user['id'];
+                            echo "<td align='center'>" . $user['id'] . "</td>";
+                            ...
+                            echo "<td align='center'><a href=\"../edit_data/edit-parent.php?parent_id=".$user['id']."\">Edit</a></td>";
+                            echo "<td align='center'><a href=\"../remove_data/remove-parent.php?parent_id=".$user['id']."\">Remove</a></td>";
+                            echo "</tr>";
+                        }
+                    }
+                }
+   ```
+
+
+
+
+
+
+
+
 
 # schools_management_flutter_app
 Schools Management App + Website 
