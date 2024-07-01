@@ -2,6 +2,26 @@
 
 Se ha modificado .....
 
+**Falta de Validación de Formato de Email**:
+   ```php
+   // Validate Email
+   if (empty(trim($_POST["email"]))) {  // check if the email input not empty
+       $email_err = "Please insert a Email."; // if it is empty show the user this message
+   } else {
+       $email = trim($_POST["email"]); // if is not empty take the value that the user entered from the input
+   }
+   ```
+   Sería recomendable validar el formato del email:
+   ```php
+   // Validate Email
+   if (empty(trim($_POST["email"]))) {  
+       $email_err = "Please insert an Email."; 
+   } elseif (!filter_var(trim($_POST["email"]), FILTER_VALIDATE_EMAIL)) {
+       $email_err = "Invalid email format.";
+   } else {
+       $email = trim($_POST["email"]); 
+   }
+
 
 
 
