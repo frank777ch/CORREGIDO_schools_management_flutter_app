@@ -44,106 +44,11 @@ Se ha modificado .....
    ```
 Se ha modificado .....
 
-**edit-student.php**:
-Anteriormente
-```php
-   // Validate Grade
-    if (empty(trim($_POST["grade"]))) {
-        $grade_err = "Please insert student grade.";
-    } else {
-        $grade = trim($_POST["grade"]);
-    }
-
-    // Validate date_of_birth
-    if (empty(trim($_POST["date_of_birth"]))) {
-        $date_of_birth_err = "Please insert student date of birth.";
-    } else {
-        $date_of_birth = trim($_POST["date_of_birth"]);
-    }
-   ```
-Ahora se verifica que los valores ingresados en fecha e grado sean correctos y sigan un formato establecido a su vez se mandan los mensajes de error correspondientes si el usuario
-se equivoca en le llenado de estos campos
-
-```php
-   // Validate Grade
-    if (empty(trim($_POST["grade"]))) {
-        $grade_err = "Please insert student grade.";
-    } elseif (!is_numeric(trim($_POST["grade"]))) {
-        $grade_err = "Grade must be a number.";
-    } else {
-        $grade = trim($_POST["grade"]);
-    }
-
-    // Validate date_of_birth
-    if (empty(trim($_POST["date_of_birth"]))) {
-        $date_of_birth_err = "Please insert student date of birth.";
-    } else {
-        $date_of_birth = trim($_POST["date_of_birth"]);
-        // Validate date format (YYYY-MM-DD)
-        if (!preg_match("/^\d{4}-\d{2}-\d{2}$/", $date_of_birth)) {
-            $date_of_birth_err = "Invalid date format. Use YYYY-MM-DD.";
-        }
-    }
+**Tamaño tablas**:
+   ```SQL
+   ALTER DATABASE tu_base_de_datos CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci;
 
    ```
-**search-child-feedback.php**:
-
-   ```php
-   if (mysqli_num_rows($result) > 0) {
-     while ($user = mysqli_fetch_array($result)) {
-   echo 
-"<br/>";
-    echo"<a style='color: #ffffff;  padding-top: 2px;' href=\"../edit_data/edit-child-feedback.php?child_feedback_id=".$user['id']."\">";
-    echo "ID : ".$user['id'].
-"<br/>";
-    echo "Teacher Name : ".$user['teacher_name'].
-"<br/>";
-    echo "Subject : ".$user['subject'].
-"<br/>";
-    echo "Feedback : ".$user['feedback'].
-"<br/>";
-    }
-   ```
-   Se ha modificado un literal asignandolo como constante para mejorar la mantenibilidad y legibilidad del codigo se
-   realizo el mismo proceso para otros de los modulos especificados para correcion en el plan de pruebas
-   ```php
-   const LINE_BREAK = "<br/>";
-   
-   // Check if the user is logged in, if not then redirect him to login page
-   if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
-       echo LINE_BREAK . "Please Login" . LINE_BREAK;
-       exit;
-   }
-   ```
-
-
-**institutions/show_data/search-parents.php**:
-   Anteriormente se realizaba un echo usando () lo cual es propenso a errores si se quiere imprimir mas de un parametro
-```php
-   echo ("<td align='center'><a href=\"../edit_data/edit-parent.php?parent_id=".$user['id']."\">Edit</a></td>");
-   echo ("<td align='center'><a href=\"../remove_data/remove-parent.php?parent_id=".$user['id']."\">Remove</a></td>");
-   ```
-   Se ha modificado para robustecer el codigo
-   ```php
-   if (mysqli_num_rows($result) > 0) {
-                        while ($user = mysqli_fetch_array($result)) {
-                            if ($user['school_id'] == (int)$_SESSION['id']) {
-                            $id = $user['id'];
-                            echo "<td align='center'>" . $user['id'] . "</td>";
-                            ...
-                            echo "<td align='center'><a href=\"../edit_data/edit-parent.php?parent_id=".$user['id']."\">Edit</a></td>";
-                            echo "<td align='center'><a href=\"../remove_data/remove-parent.php?parent_id=".$user['id']."\">Remove</a></td>";
-                            echo "</tr>";
-                        }
-                    }
-                }
-   ```
-
-
-
-
-
-
 
 
 
@@ -155,6 +60,7 @@ https://youtu.be/Jy_7nu-YjPI
 
 steps to work with the app
 https://youtu.be/XH7Y5X1_BgQ
+
 
 # App:
 

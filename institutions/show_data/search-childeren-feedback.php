@@ -117,8 +117,8 @@
                             $user2 = mysqli_fetch_array($result2);
                             echo "<td align='center'>" . $user2['name'] . "</td>";
                             echo "<td align='center'>" . $user['date_of_feedback'] . "</td>";
-                            echo ("<td align='center'><a href=\"../edit_data/edit-child-feedback.php?child_feedback_id=".$user['id']."\">Edit</a></td>");
-                            echo ("<td align='center'><a href=\"../remove_data/remove-child-feedback.php?child_feedback_id=".$user['id']."\">Remove</a></td>");
+                            echo "<td align='center'><a href=\"../edit_data/edit-child-feedback.php?child_feedback_id=".$user['id']."\">Edit</a></td>";
+                            echo "<td align='center'><a href=\"../remove_data/remove-child-feedback.php?child_feedback_id=".$user['id']."\">Remove</a></td>";
                             echo "</tr>";
 
                         }

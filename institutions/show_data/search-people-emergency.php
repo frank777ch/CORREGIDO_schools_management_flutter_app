@@ -84,50 +84,55 @@
 
                 <tr>
 
-                    <?php
+                <?php
+// Initialize the session
+session_start();
 
+// Check if the user is logged in, if not then redirect him to login page
+if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+    echo "<br/>" . "Please Login" . "<br/>";
+    exit;
+}
 
+include("../config.php");
 
-                    // Initialize the session
-                    session_start();
+// Define constants for HTML table cell formatting
+define('TD_START', "<td align='center'>");
+define('TD_END', "</td>");
 
-                    // Check if the user is logged in, if not then redirect him to login page
-                    if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
-                        echo "<br/>" . "Please Login" . "<br/>";
-                        exit;
-                    }
+$query = "SELECT * FROM people_emergency ORDER BY name";
+$result = mysqli_query($link, $query);
 
-                    include("../config.php");
+if (mysqli_num_rows($result) > 0) {
+    while ($user = mysqli_fetch_array($result)) {
+        if ($user['school_id'] == (int)$_SESSION['id']) {
+            $id = $user['id'];
+            echo TD_START . $user['id'] . TD_END;
+            echo TD_START . $user['name'] . TD_END;
+            echo TD_START . $user['relation'] . TD_END;
+            echo TD_START . $user['number'] . TD_END;
+            echo TD_START . $user['address'] . TD_END;
+            echo TD_START . $user['email'] . TD_END;
 
+            // Query to fetch student name
+            $query2 = "SELECT name FROM students WHERE students.id={$user['student_id'] }";
+            $result2 = mysqli_query($link, $query2);
+            $user2 = mysqli_fetch_array($result2);
 
-                    $query = "SELECT * FROM people_emergency ORDER BY name";
-                    $result = mysqli_query($link, $query);
+            echo TD_START . $user2['name'] . TD_END;
+            echo TD_START . $user['date_of_register'] . TD_END;
 
+            // Remove link
+            echo "<td align='center'><a href=\"../remove_data/remove-people-emergency.php?people_id=".$user['id']."\">Remove</a></td>";
 
-                    if (mysqli_num_rows($result) > 0) {
-                        while ($user = mysqli_fetch_array($result)) {
+            echo "</tr>";
+        }
+    }
+}
 
-                            if ($user['school_id'] == (int)$_SESSION['id']) {
-                            $id = $user['id'];
-                            echo "<td align='center'>" . $user['id'] . "</td>";
-                            echo "<td align='center'>" . $user['name'] . "</td>";
-                            echo "<td align='center'>" . $user['relation'] . "</td>";
-                            echo "<td align='center'>" . $user['number'] . "</td>";
-                            echo "<td align='center'>" . $user['address'] . "</td>";
-                            echo "<td align='center'>" . $user['email'] . "</td>";
-                            $query2 = "SELECT name FROM students WHERE students.id={$user['student_id'] }";
-                            $result2 = mysqli_query($link, $query2);
-                            $user2 = mysqli_fetch_array($result2);
-                            echo "<td align='center'>" . $user2['name'] . "</td>";
-                            echo "<td align='center'>" . $user['date_of_register'] . "</td>";
-                            echo ("<td align='center'><a href=\"../remove_data/remove-people-emergency.php?people_id=".$user['id']."\">Remove</a></td>");
-                            echo "</tr>";
+mysqli_close($link);
+?>
 
-                        }
-                    }
-                }
-                    mysqli_close($link);
-                    ?>
         </table>
     </div>
 
