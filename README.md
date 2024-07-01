@@ -42,7 +42,13 @@ Se ha modificado .....
        $number = trim($_POST["number"]); 
    }
    ```
+Se ha modificado .....
 
+**Tamaño tablas**:
+   ```SQL
+   ALTER DATABASE tu_base_de_datos CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci;
+
+   ```
 
 
 
