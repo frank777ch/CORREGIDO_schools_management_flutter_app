@@ -62,7 +62,8 @@ Se ha modificado .....
 "<br/>";
     }
    ```
-   Se ha modificado un literal asignandolo como constante para mejorar la mantenibilidad y legibilidad del codigo
+   Se ha modificado un literal asignandolo como constante para mejorar la mantenibilidad y legibilidad del codigo se
+   realizo el mismo proceso para otros de los modulos especificados para correcion en el plan de pruebas
    ```php
    const LINE_BREAK = "<br/>";
    
