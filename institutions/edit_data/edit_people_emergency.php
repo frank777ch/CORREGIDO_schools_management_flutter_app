@@ -49,12 +49,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $number = trim($_POST["number"]);
   }
 
-  // Validate Email
-  if (empty(trim($_POST["email"]))) {
-    $email_err = "Please insert person email.";
-  } else {
-    $email = trim($_POST["email"]);
+// Validate Email
+if (empty(trim($_POST["email"]))) {
+  $email_err = "Please insert person email.";
+} else {
+  $email = trim($_POST["email"]);
+  
+  // Check for spaces
+  if (strpos($email, ' ') !== false) {
+      $email_err = "Email must not contain spaces.";
+  } 
+  // Check for valid domains
+  elseif (!preg_match('/@(gmail\.com|hotmail\.com|yahoo\.com)$/', $email)) {
+      $email_err = "Email must end with @gmail.com, @hotmail.com, or @yahoo.com.";
   }
+}
 
   // Validate Address
 
