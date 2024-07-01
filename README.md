@@ -2,7 +2,7 @@
 
 Se ha modificado .....
 
-**Falta de Validación de Formato de Email(register.php)**:
+**Falta de Validación de Formato de Email(CORREGIDO_schools_management_flutter_app/institutions/register.php)**:
    ```php
    // Validate Email
    if (empty(trim($_POST["email"]))) {  // check if the email input not empty
@@ -23,7 +23,7 @@ Se ha modificado .....
    }
    ```
 
-**Validación de Número de Teléfono(register.php)**:
+**Validación de Número de Teléfono(CORREGIDO_schools_management_flutter_app/institutions/register.php)**:
    ```php
    // Validate number
    if (empty(trim($_POST["number"]))) {
