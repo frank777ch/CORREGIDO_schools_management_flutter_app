@@ -23,6 +23,26 @@ Se ha modificado .....
    }
    ```
 
+**Validación de Número de Teléfono(register.php)**:
+   ```php
+   // Validate number
+   if (empty(trim($_POST["number"]))) {
+       $number_err = "Please insert a Number."; 
+   } else {
+       $number = trim($_POST["number"]); 
+   }
+   ```
+   validar que sólo contenga dígitos:
+   ```php
+   if (empty(trim($_POST["number"]))) {
+       $number_err = "Please insert a Number."; 
+   } elseif (!ctype_digit(trim($_POST["number"]))) {
+       $number_err = "Please insert a valid Number."; 
+   } else {
+       $number = trim($_POST["number"]); 
+   }
+   ```
+
 
 
 

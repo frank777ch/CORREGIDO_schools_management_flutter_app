@@ -68,7 +68,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Validate Email
-   // Validate Email
     if (empty(trim($_POST["email"]))) {  
         $email_err = "Please insert an Email."; 
     } elseif (!filter_var(trim($_POST["email"]), FILTER_VALIDATE_EMAIL)) {
@@ -86,9 +85,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Validate number
     if (empty(trim($_POST["number"]))) {
-        $number_err = "Please insert a Number."; // if it is empty show the user this message
+        $number_err = "Please insert a Number."; 
+    } elseif (!ctype_digit(trim($_POST["number"]))) {
+        $number_err = "Please insert a valid Number."; 
     } else {
-        $number = trim($_POST["number"]); // if is not empty take the value that the user entered from the input
+        $number = trim($_POST["number"]); 
     }
 
 
