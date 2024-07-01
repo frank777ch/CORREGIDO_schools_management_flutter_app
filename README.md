@@ -44,10 +44,33 @@ Se ha modificado .....
    ```
 Se ha modificado .....
 
-**Tamaño tablas**:
-   ```SQL
-   ALTER DATABASE tu_base_de_datos CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci;
+**search-child-feedback.php**:
 
+   ```php
+   if (mysqli_num_rows($result) > 0) {
+     while ($user = mysqli_fetch_array($result)) {
+   echo 
+"<br/>";
+    echo"<a style='color: #ffffff;  padding-top: 2px;' href=\"../edit_data/edit-child-feedback.php?child_feedback_id=".$user['id']."\">";
+    echo "ID : ".$user['id'].
+"<br/>";
+    echo "Teacher Name : ".$user['teacher_name'].
+"<br/>";
+    echo "Subject : ".$user['subject'].
+"<br/>";
+    echo "Feedback : ".$user['feedback'].
+"<br/>";
+    }
+   ```
+   Se ha modificado un literal asignandolo como constante para mejorar la mantenibilidad y legibilidad del codigo
+   ```php
+   const LINE_BREAK = "<br/>";
+   
+   // Check if the user is logged in, if not then redirect him to login page
+   if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+       echo LINE_BREAK . "Please Login" . LINE_BREAK;
+       exit;
+   }
    ```
 
 
