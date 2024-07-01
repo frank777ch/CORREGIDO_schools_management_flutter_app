@@ -2,7 +2,7 @@
 
 Se ha modificado .....
 
-**Falta de Validación de Formato de Email**:
+**Falta de Validación de Formato de Email(register.php)**:
    ```php
    // Validate Email
    if (empty(trim($_POST["email"]))) {  // check if the email input not empty
