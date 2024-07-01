@@ -1,7 +1,5 @@
 # Correcciones
-
 Se ha modificado .....
-
 **Falta de Validación de Formato de Email(./institutions/register.php)**:
    ```php
    // Validate Email
@@ -22,7 +20,6 @@ Se ha modificado .....
        $email = trim($_POST["email"]); 
    }
    ```
-
 **Validación de Número de Teléfono(./institutions/register.php)**:
    ```php
    // Validate number
@@ -44,28 +41,57 @@ Se ha modificado .....
    ```
 Se ha modificado .....
 
-**Tamaño tablas**:
-   ```SQL
-   ALTER DATABASE tu_base_de_datos CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci;
+**edit-student.php**:
+Anteriormente
+```php
+   // Validate Grade
+    if (empty(trim($_POST["grade"]))) {
+        $grade_err = "Please insert student grade.";
+    } else {
+        $grade = trim($_POST["grade"]);
+    }
+
+    // Validate date_of_birth
+    if (empty(trim($_POST["date_of_birth"]))) {
+        $date_of_birth_err = "Please insert student date of birth.";
+    } else {
+        $date_of_birth = trim($_POST["date_of_birth"]);
+    }
+   ```
+Ahora se verifica que los valores ingresados en fecha e grado sean correctos y sigan un formato establecido a su vez se mandan los mensajes de error correspondientes si el usuario
+se equivoca en le llenado de estos campos
+
+```php
+   // Validate Grade
+    if (empty(trim($_POST["grade"]))) {
+        $grade_err = "Please insert student grade.";
+    } elseif (!is_numeric(trim($_POST["grade"]))) {
+        $grade_err = "Grade must be a number.";
+    } else {
+        $grade = trim($_POST["grade"]);
+    }
+
+    // Validate date_of_birth
+    if (empty(trim($_POST["date_of_birth"]))) {
+        $date_of_birth_err = "Please insert student date of birth.";
+    } else {
+        $date_of_birth = trim($_POST["date_of_birth"]);
+        // Validate date format (YYYY-MM-DD)
+        if (!preg_match("/^\d{4}-\d{2}-\d{2}$/", $date_of_birth)) {
+            $date_of_birth_err = "Invalid date format. Use YYYY-MM-DD.";
+        }
+    }
 
    ```
+**search-child-feedback.php**:
 
-
-
-# schools_management_flutter_app
-Schools Management App + Website 
-
-Video for the app 
-https://youtu.be/Jy_7nu-YjPI
-
+   ```php
+@@ -114,7 +156,6 @@ https://youtu.be/Jy_7nu-YjPI
 steps to work with the app
 https://youtu.be/XH7Y5X1_BgQ
-
 
 # App:
 
 ![Alt text](https://github.com/abdallahyassein/schools_management_flutter_app/blob/master/screenshot.png?raw=true "Title")
-
 # Website :
-
 ![Alt text](https://github.com/abdallahyassein/schools_management_flutter_app/blob/master/screenshot2.png?raw=true "Title")
