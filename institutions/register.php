@@ -67,6 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $name = trim($_POST["name"]); // if is not empty take the value that the user entered from the input
     }
 
+    // ================= Corrected the email validation =================
     // Validate Email
     if (empty(trim($_POST["email"]))) {  
         $email_err = "Please insert an Email."; 
@@ -75,6 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $email = trim($_POST["email"]); 
     }
+    // ==================================================================
 
     // Validate address
     if (empty(trim($_POST["address"]))) {
@@ -83,6 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $address = trim($_POST["address"]); // if is not empty take the value that the user entered from the input
     }
 
+    // ================ Corrected the phone number validation ================
     // Validate number
     if (empty(trim($_POST["number"]))) {
         $number_err = "Please insert a Number."; 
@@ -91,6 +94,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $number = trim($_POST["number"]); 
     }
+    // ==================================================================
 
 
 
