@@ -1,5 +1,40 @@
 # Correcciones
 Se ha modificado .....
+
+insert-student.php
+
+   ```php
+    // Validate Name
+    if (empty(trim($_POST["name"]))) {
+        $name_err = "Please insert a Name.";
+    } else {
+        $name = trim($_POST["name"]);
+    }
+   ```
+   Name can only contain letters and spaces
+   ```php
+    // name validation
+    if (empty(trim($_POST["name"]))) {
+        $name_err = "Please enter a name.";
+    } elseif (!preg_match('/^[a-zA-Z\s]+$/', $_POST["name"])) {
+        $name_err = "Name can only contain letters and spaces.";
+    } else {
+        $name = trim($_POST["name"]);
+    }
+   ```
+
+   addres validation added
+      ```php
+   // Example for address validation
+    if (empty(trim($_POST["address"]))) {
+        $address_err = "Please enter an address.";
+    } else {
+        $address = trim($_POST["address"]);
+    }
+   ```
+
+
+
 **Falta de Validación de Formato de Email(./institutions/register.php)**:
    ```php
    // Validate Email

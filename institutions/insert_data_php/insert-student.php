@@ -69,9 +69,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $confirm_password_err = "Password did not match.";
         }
     }
-    // Validate Name
+    // Example for name validation
     if (empty(trim($_POST["name"]))) {
-        $name_err = "Please insert a Name.";
+        $name_err = "Please enter a name.";
+    } elseif (!preg_match('/^[a-zA-Z\s]+$/', $_POST["name"])) {
+        $name_err = "Name can only contain letters and spaces.";
     } else {
         $name = trim($_POST["name"]);
     }
@@ -100,6 +102,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $address = trim($_POST["address"]);
     }
 
+    // Example for address validation
+    if (empty(trim($_POST["address"]))) {
+        $address_err = "Please enter an address.";
+    } else {
+        $address = trim($_POST["address"]);
+    }
 
 
     // Check input errors before inserting in database
