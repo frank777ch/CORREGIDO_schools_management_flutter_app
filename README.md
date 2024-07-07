@@ -1,8 +1,7 @@
 # Correcciones
 Se ha modificado .....
 
-insert-student.php
-
+**Falta de Validación de Formato name(./institutions/insert_data_php/insert-student.php)**:
    ```php
     // Validate Name
     if (empty(trim($_POST["name"]))) {
@@ -23,7 +22,7 @@ insert-student.php
     }
    ```
 
-   addres validation added
+**Falta de Validación de Formato address(./institutions/insert_data_php/insert-student.php)**:
       ```php
    // Example for address validation
     if (empty(trim($_POST["address"]))) {
