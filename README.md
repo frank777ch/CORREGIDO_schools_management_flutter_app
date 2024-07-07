@@ -23,8 +23,8 @@ Se ha modificado .....
             $name = trim($_POST["name"]);
         }
     ```
-
-    Validar grade menor a 10
+**Validar grade menor a 10**:
+    
 
     ```php
         // Validate grade
@@ -47,8 +47,8 @@ Se ha modificado .....
         $grade = trim($_POST["grade"]);
     }
     ```
-
-    validar date of birth igual a 10 caracteres
+**validar date of birth igual a 10 caracteres**:
+    
 
     ```php
     // Validate date_of_birth
@@ -69,7 +69,8 @@ Se ha modificado .....
         $date_of_birth = trim($_POST["date_of_birth"]);
     }
     ```
-    validar address 
+     
+**validar address**:
 
     ```php
     // Validar dirección
