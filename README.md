@@ -12,6 +12,7 @@ Se ha modificado .....
     }
     ```
     Debe tener longitud menor a 30
+
     ```php
     // Ejemplo para validación de nombre
     if (empty(trim($_POST["name"]))) {
@@ -24,6 +25,7 @@ Se ha modificado .....
     ```
 
     Validar grade menor a 10
+
     ```php
         // Validate grade
     if (empty(trim($_POST["grade"]))) {
@@ -47,6 +49,7 @@ Se ha modificado .....
     ```
 
     validar date of birth igual a 10 caracteres
+    
     ```php
     // Validate date_of_birth
     if (empty(trim($_POST["date_of_birth"]))) {
