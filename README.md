@@ -2,16 +2,16 @@
 Se ha modificado .....
 
 **Falta de Validación de Formato name(./institutions/insert_data_php/insert-student.php)**:
-   ```php
+    ```php
     // Validate Name
     if (empty(trim($_POST["name"]))) {
         $name_err = "Please insert a Name.";
     } else {
         $name = trim($_POST["name"]);
     }
-   ```
+    ```
    Debe tener longitud menor a 30
-   ```php
+    ```php
     // Ejemplo para validación de nombre
     if (empty(trim($_POST["name"]))) {
         $name_err = "Por favor, ingresa un nombre.";
@@ -20,17 +20,17 @@ Se ha modificado .....
     } else {
         $name = trim($_POST["name"]);
     }
-   ```
+    ```
 
-   Validar grade menor a 10
-   ```php
+    Validar grade menor a 10
+    ```php
         // Validate grade
     if (empty(trim($_POST["grade"]))) {
         $grade_err = "Please insert student grade.";
     } else {
         $grade = trim($_POST["grade"]);
     }
-   ```
+    ```
 
     ```php
     // Validar grado
