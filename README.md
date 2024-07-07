@@ -95,7 +95,7 @@
     }
     ```
 
-
+## register.php
 
 **Falta de Validación de Formato de Email(./institutions/register.php)**:
    ```php
