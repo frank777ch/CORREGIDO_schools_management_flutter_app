@@ -4,25 +4,25 @@ Se ha modificado .....
 **Falta de Validación de Formato name(./institutions/insert_data_php/insert-student.php)**:
 
     ```php
-    // Validate Name
-    if (empty(trim($_POST["name"]))) {
-        $name_err = "Please insert a Name.";
-    } else {
-        $name = trim($_POST["name"]);
-    }
+        // Validate Name
+        if (empty(trim($_POST["name"]))) {
+            $name_err = "Please insert a Name.";
+        } else {
+            $name = trim($_POST["name"]);
+        }
     ```
-    
+
     Debe tener longitud menor a 30
 
     ```php
-    // Ejemplo para validación de nombre
-    if (empty(trim($_POST["name"]))) {
-        $name_err = "Por favor, ingresa un nombre.";
-    } elseif (!preg_match('/^[a-zA-Z\s]{1,30}$/', $_POST["name"])) {
-        $name_err = "El nombre solo puede contener letras y espacios, y debe tener menos de 30 caracteres.";
-    } else {
-        $name = trim($_POST["name"]);
-    }
+        // Ejemplo para validación de nombre
+        if (empty(trim($_POST["name"]))) {
+            $name_err = "Por favor, ingresa un nombre.";
+        } elseif (!preg_match('/^[a-zA-Z\s]{1,30}$/', $_POST["name"])) {
+            $name_err = "El nombre solo puede contener letras y espacios, y debe tener menos de 30 caracteres.";
+        } else {
+            $name = trim($_POST["name"]);
+        }
     ```
 
     Validar grade menor a 10
