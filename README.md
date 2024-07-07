@@ -1,5 +1,6 @@
 # Correcciones
-Se ha modificado .....
+
+## insert-student.php
 
 **Falta de Validación de Formato name(./institutions/insert_data_php/insert-student.php)**:
 
@@ -80,20 +81,6 @@ Se ha modificado .....
         $address_err = "La dirección debe tener menos de 17 caracteres.";
     } else {
         $address = trim($_POST["address"]);
-    }
-    ```
-
-    ```php
-    // Validate grade
-    if (empty(trim($_POST["grade"]))) {
-        $grade_err = "Por favor, ingresa el grado del estudiante.";
-    } elseif (!is_numeric($_POST["grade"])) {
-        $grade_err = "El grado debe ser un número.";
-    } else {
-        $grade = floatval($_POST["grade"]);
-        if ($grade < 0 || $grade > 10) {
-            $grade_err = "El grado debe estar entre 0 y 10.";
-        }
     }
     ```
 
