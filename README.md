@@ -11,6 +11,7 @@ Se ha modificado .....
         $name = trim($_POST["name"]);
     }
     ```
+    
     Debe tener longitud menor a 30
 
     ```php
@@ -49,7 +50,7 @@ Se ha modificado .....
     ```
 
     validar date of birth igual a 10 caracteres
-    
+
     ```php
     // Validate date_of_birth
     if (empty(trim($_POST["date_of_birth"]))) {
