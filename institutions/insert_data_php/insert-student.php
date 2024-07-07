@@ -79,22 +79,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $name = trim($_POST["name"]);
     }
 
-
-
-
-    // Validate Name
+    // Validar grado
     if (empty(trim($_POST["grade"]))) {
-        $grade_err = "Please insert student grade.";
+        $grade_err = "Por favor, ingresa el grado del estudiante.";
+    } elseif (!is_numeric($_POST["grade"])) {
+        $grade_err = "El grado debe ser un número.";
+    } elseif ($_POST["grade"] >= 10) {
+        $grade_err = "El grado debe ser menor que 10.";
     } else {
         $grade = trim($_POST["grade"]);
     }
 
-    // Validate date_of_birth
+
+    // Validar fecha de nacimiento
     if (empty(trim($_POST["date_of_birth"]))) {
-        $date_of_birth_err = "Please insert student date of birth.";
+        $date_of_birth_err = "Por favor, ingresa la fecha de nacimiento del estudiante.";
+    } elseif (strlen($_POST["date_of_birth"]) !== 10) {
+        $date_of_birth_err = "La fecha de nacimiento debe tener exactamente 10 caracteres.";
     } else {
         $date_of_birth = trim($_POST["date_of_birth"]);
     }
+
 
     // Validate grade
 
@@ -104,12 +109,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $address = trim($_POST["address"]);
     }
 
-    // Example for address validation
+    // Validar dirección
     if (empty(trim($_POST["address"]))) {
-        $address_err = "Please enter an address.";
+        $address_err = "Por favor, ingresa una dirección.";
+    } elseif (strlen($_POST["address"]) >= 17) {
+        $address_err = "La dirección debe tener menos de 17 caracteres.";
     } else {
         $address = trim($_POST["address"]);
     }
+
 
 
     // Check input errors before inserting in database
