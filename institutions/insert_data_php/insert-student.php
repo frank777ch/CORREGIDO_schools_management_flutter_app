@@ -69,14 +69,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $confirm_password_err = "Password did not match.";
         }
     }
-    // Example for name validation
+    
+    // Ejemplo para validación de nombre
     if (empty(trim($_POST["name"]))) {
-        $name_err = "Please enter a name.";
-    } elseif (!preg_match('/^[a-zA-Z\s]+$/', $_POST["name"])) {
-        $name_err = "Name can only contain letters and spaces.";
+        $name_err = "Por favor, ingresa un nombre.";
+    } elseif (!preg_match('/^[a-zA-Z\s]{1,30}$/', $_POST["name"])) {
+        $name_err = "El nombre solo puede contener letras y espacios, y debe tener menos de 30 caracteres.";
     } else {
         $name = trim($_POST["name"]);
     }
+
 
 
 
