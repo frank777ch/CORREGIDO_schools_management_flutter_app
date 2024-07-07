@@ -2,6 +2,7 @@
 Se ha modificado .....
 
 **Falta de Validación de Formato name(./institutions/insert_data_php/insert-student.php)**:
+
     ```php
     // Validate Name
     if (empty(trim($_POST["name"]))) {
@@ -66,6 +67,7 @@ Se ha modificado .....
     }
     ```
     validar address 
+    
     ```php
     // Validar dirección
     if (empty(trim($_POST["address"]))) {
