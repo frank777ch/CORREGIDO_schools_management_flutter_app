@@ -11,7 +11,7 @@ Se ha modificado .....
         $name = trim($_POST["name"]);
     }
     ```
-   Debe tener longitud menor a 30
+    Debe tener longitud menor a 30
     ```php
     // Ejemplo para validación de nombre
     if (empty(trim($_POST["name"]))) {
@@ -67,7 +67,7 @@ Se ha modificado .....
     }
     ```
     validar address 
-    
+
     ```php
     // Validar dirección
     if (empty(trim($_POST["address"]))) {
