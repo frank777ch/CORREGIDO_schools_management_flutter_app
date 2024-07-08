@@ -10,7 +10,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en" xml:lang="en">
 
 <head>
     <meta charset="utf-8">
