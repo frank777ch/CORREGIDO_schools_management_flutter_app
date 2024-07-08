@@ -91,8 +91,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 // Validate Name
 if (empty(trim($_POST["name"]))) {
     $name_err = "Please insert a Name.";
-} elseif (strlen(trim($_POST["name"])) > 25) {
-    $name_err = "Name must be less than or equal to 25 characters.";
+} elseif (strlen(trim($_POST["name"])) > 60) {
+    $name_err = "Name must be less than or equal to 60 characters.";
 } else {
     $name = trim($_POST["name"]);
 }
