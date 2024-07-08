@@ -108,16 +108,16 @@ if (empty(trim($_POST["number"]))) {
     $number = trim($_POST["number"]);
 }
 
-
 // Validate Email
 if (empty(trim($_POST["email"]))) {
     $email_err = "Please insert parent email.";
 } elseif (strlen(trim($_POST["email"])) > 40) {
     $email_err = "Email must be less than or equal to 40 characters.";
+} elseif (!filter_var(trim($_POST["email"]), FILTER_VALIDATE_EMAIL)) {
+    $email_err = "Invalid email format. Please enter a valid email address.";
 } else {
     $email = trim($_POST["email"]);
 }
-
   // Validate Address
 
 // Validate Address
