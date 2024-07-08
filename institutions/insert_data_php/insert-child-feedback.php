@@ -1,4 +1,5 @@
 <?php
+define('ERROR_MESSAGE', 'Something went wrong. Please try again later.');
 // Initialize the session
 session_start();
 
@@ -16,12 +17,30 @@ $subject = $teacher = $feedback = $student_id = "";
 $subject_err = $teacher_err = $feedback_err = $student_id_err = "";
 
 // Check if there are students
-$result = mysqli_query($link, "SELECT * FROM students WHERE students.school_id='{$_SESSION['id']}'");
-if (mysqli_num_rows($result) <= 0) {
-    echo "<script>
-    alert('There are no Students in This school');
-    window.location.href='main-insert-page.php';
-    </script>";
+$sql = "SELECT * FROM students WHERE school_id = ?";
+
+if ($stmt = mysqli_prepare($link, $sql)) {
+    // Bind the session ID to the placeholder
+    mysqli_stmt_bind_param($stmt, "i", $_SESSION['id']);
+    
+    // Execute the statement
+    mysqli_stmt_execute($stmt);
+    
+    // Get the result
+    $result = mysqli_stmt_get_result($stmt);
+    
+    // Check if there are students
+    if (mysqli_num_rows($result) <= 0) {
+        echo "<script>
+        alert('There are no Students in This school');
+        window.location.href='main-insert-page.php';
+        </script>";
+    }
+    
+    // Close the statement
+    mysqli_stmt_close($stmt);
+} else {
+    echo ERROR_MESSAGE;
 }
 
 // Processing form data when form is submitted
@@ -55,17 +74,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Validate student_id
     if (empty(trim($_POST["student_id"]))) {
-        $student_id_err = "Please insert student ID.";
-    } else {
-        $student_id = trim($_POST["student_id"]);
-
-        // CHECK IF THIS STUDENT AT THIS SCHOOL
-        $result1 = mysqli_query($link, "SELECT id FROM students WHERE id='{$student_id}' AND school_id='{$_SESSION['id']}'");
-        if (mysqli_num_rows($result1) <= 0) {
-            $student_id_err = "Please insert a Right student ID.";
-            $student_id = "";
-        }
-    }
+      $student_id_err = "Please insert student ID.";
+  } else {
+      $student_id = trim($_POST["student_id"]);
+      
+      // CHECK IF THIS STUDENT AT THIS SCHOOL
+      $sql = "SELECT id FROM students WHERE id = ? AND school_id = ?";
+      
+      if ($stmt = mysqli_prepare($link, $sql)) {
+          // Bind the parameters
+          mysqli_stmt_bind_param($stmt, "ii", $student_id, $_SESSION['id']);
+          
+          // Execute the statement
+          mysqli_stmt_execute($stmt);
+          
+          // Get the result
+          mysqli_stmt_store_result($stmt);
+          
+          // Check if there are rows returned
+          if (mysqli_stmt_num_rows($stmt) <= 0) {
+              $student_id_err = "Please insert a valid student ID for this school.";
+              $student_id = "";
+          }
+          
+          // Close the statement
+          mysqli_stmt_close($stmt);
+      } else {
+          echo ERROR_MESSAGE;
+      }
+  }
+  
 
     // Check input errors before inserting in database
     if (empty($subject_err) && empty($teacher_err) && empty($student_id_err) && empty($feedback_err)) {
@@ -92,7 +130,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               header("location: insert-child-feedback.php");
               exit();
           } else {
-              echo "Something went wrong. Please try again later.";
+              echo ERROR_MESSAGE;
           }
         }
 
