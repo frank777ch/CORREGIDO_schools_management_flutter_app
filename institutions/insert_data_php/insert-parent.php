@@ -14,7 +14,9 @@ require_once "../config.php";
 // Define variables and initialize with empty values
 $student_id = 0;
 $username = $password = $confirm_password = $name =  $address = $number = $email = "";
-$username_err = $password_err = $confirm_password_err = $name_err =  $address_err = $number_err = $email_err = $student_id_err = "";
+$username_err = $password_err = $confirm_password_err = 
+$name_err =  $address_err = $number_err = 
+$email_err = $student_id_err = "";
 
 // Check if there are students
 
@@ -142,16 +144,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // Check input errors before inserting in database
   if (
     empty($username_err) && empty($password_err) &&
-    empty($confirm_password_err) && empty($name_err) &&  empty($address_err) && empty($number_err) && empty($student_id_err)
+    empty($confirm_password_err) && empty($name_err) &&  
+    empty($address_err) && empty($number_err) && empty($student_id_err)
   ) {
 
     // Prepare an insert statement
-    $sql = "INSERT INTO parents (username, password, name,number, address,email,school_id,student_id) VALUES (?, ?, ?, ?, ?, ?,?,?)";
+    $sql = "INSERT INTO 
+    parents (username, password, name,number, address,email,school_id,student_id) 
+    VALUES (?, ?, ?, ?, ?, ?,?,?)";
 
 
     if ($stmt = mysqli_prepare($link, $sql)) {
       // Bind variables to the prepared statement as parameters
-      mysqli_stmt_bind_param($stmt, "sssssssi", $param_username, $param_password, $param_name, $param_number, $param_address, $param_email, $param_school_id, $param_student_id);
+      mysqli_stmt_bind_param($stmt, "sssssssi", $param_username, $param_password, $param_name, 
+      $param_number, $param_address, $param_email, $param_school_id, $param_student_id);
 
       // Set parameters
       $param_username = $username;
@@ -186,13 +192,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang = "en">
 
 <head>
   <meta charset="utf-8">
   <title>Insert Parent</title> <!-- title for the page -->
   <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+  Dintegrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
   <link href="https://fonts.googleapis.com/css?family=Coustard|Lato&display=swap" rel="stylesheet">
 
@@ -262,50 +269,58 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                 <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
                   <label>Username</label>
-                  <input type="text" name="username" class="form-control" value="<?php echo $username; ?>" aria-describedby="Username" placeholder="Enter Parent Username">
+                  <input type="text" name="username" class="form-control" 
+                  value="<?php echo $username; ?>" aria-describedby="Username" placeholder="Enter Parent Username">
                   <span class="help-block" style="color:red"><?php echo $username_err; ?></span>
 
                 </div>
                 <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
                   <label>Password</label>
-                  <input type="password" name="password" class="form-control" value="<?php echo $password; ?>" placeholder="Enter Password">
+                  <input type="password" name="password" class="form-control" 
+                  value="<?php echo $password; ?>" placeholder="Enter Password">
                   <span class="help-block" style="color:red"><?php echo $password_err; ?></span>
                 </div>
 
                 <div class="form-group <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
                   <label>Confirm Password</label>
-                  <input type="password" name="confirm_password" class="form-control" value="<?php echo $confirm_password; ?>" placeholder="Confirm Password">
+                  <input type="password" name="confirm_password" class="form-control" 
+                  value="<?php echo $confirm_password; ?>" placeholder="Confirm Password">
                   <span class="help-block" style="color:red"><?php echo $confirm_password_err; ?></span>
                 </div>
 
                 <div class="form-group <?php echo (!empty($name_err)) ? 'has-error' : ''; ?>">
                   <label>Full Name</label>
-                  <input type="text" name="name" class="form-control" value="<?php echo $name; ?>" placeholder="Enter Parent Full Name">
+                  <input type="text" name="name" class="form-control" 
+                  value="<?php echo $name; ?>" placeholder="Enter Parent Full Name">
                   <span class="help-block" style="color:red"><?php echo $name_err; ?></span>
                 </div>
 
                 <div class="form-group <?php echo (!empty($student_id_err)) ? 'has-error' : ''; ?>">
                   <label>Student ID</label>
-                  <input type="text" name="student_id" class="form-control" value="<?php echo $student_id; ?>" placeholder="Enter Student ID">
+                  <input type="text" name="student_id" class="form-control" 
+                  value="<?php echo $student_id; ?>" placeholder="Enter Student ID">
                   <span class="help-block" style="color:red"><?php echo $student_id_err; ?></span>
                 </div>
 
 
                 <div class="form-group <?php echo (!empty($address_err)) ? 'has-error' : ''; ?>">
                   <label>Address</label>
-                  <input type="text" name="address" class="form-control" value="<?php echo $address; ?>" placeholder="Enter Parent Address">
+                  <input type="text" name="address" class="form-control" 
+                  value="<?php echo $address; ?>" placeholder="Enter Parent Address">
                   <span class="help-block" style="color:red"><?php echo $address_err; ?></span>
                 </div>
 
                 <div class="form-group <?php echo (!empty($number)) ? 'has-error' : ''; ?>">
                   <label>Phone Number</label>
-                  <input type="text" name="number" class="form-control" value="<?php echo $number; ?>" placeholder="Enter Parent Phone Number">
+                  <input type="text" name="number" class="form-control" 
+                  value="<?php echo $number; ?>" placeholder="Enter Parent Phone Number">
                   <span class="help-block" style="color:red"><?php echo $number_err; ?></span>
                 </div>
 
                 <div class="form-group <?php echo (!empty($email)) ? 'has-error' : ''; ?>">
                   <label>Email</label>
-                  <input type="text" name="email" class="form-control" value="<?php echo $email; ?>" placeholder="Enter Parent Email">
+                  <input type="text" name="email" class="form-control" 
+                  value="<?php echo $email; ?>" placeholder="Enter Parent Email">
                   <span class="help-block" style="color:red"><?php echo $email_err; ?></span>
                 </div>
 
@@ -322,9 +337,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       </div>
       <div class="col-13 col-sm-6 col-md-5 mx-auto">
         <div class="form-group">
-          <h2 class="text-center" style=" font-size: 45px; font-family:'Coustard', serif; color: #FFFFFF; background-color:#353a40;">Search Student ID</h2>
-          <input type="text" name="search" id="search" autocomplete="off" class="form-control" placeholder="Enter Student Full Name">
-          <div id="output" style="font-family: 'Coustard', serif; background-color:#353a40; color: rgb(255, 255, 255); padding-left: 2%;"></div>
+          <h2 class="text-center" 
+          style=" font-size: 45px; font-family:'Coustard', serif; 
+          color: #FFFFFF; background-color:#353a40;">Search Student ID</h2>
+          <input type="text" name="search" id="search" autocomplete="off" 
+          class="form-control" placeholder="Enter Student Full Name">
+          <div id="output" 
+          style="font-family: 'Coustard', serif; background-color:#353a40; 
+          color: rgb(255, 255, 255); padding-left: 2%;"></div>
         </div>
       </div>
     </div>
@@ -364,8 +384,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   </script>
 
 </body>
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" 
+integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" 
+crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" 
+integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" 
+crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" 
+integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" 
+crossorigin="anonymous"></script>
 
 </html>
