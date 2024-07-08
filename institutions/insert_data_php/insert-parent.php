@@ -35,6 +35,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // Validate username
   if (empty(trim($_POST["username"]))) {
     $username_err = "Please enter a username.";
+  } elseif (strlen(trim($_POST["username"])) > 25) {
+      $username_err = "Username must be less than or equal to 25 characters.";
   } else {
     // Prepare a select statement
     $sql = "SELECT id FROM parents WHERE username = ?";
@@ -70,6 +72,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password_err = "Please enter a password.";
   } elseif (strlen(trim($_POST["password"])) < 6) {
     $password_err = "Password must have atleast 6 characters.";
+  } elseif (strlen(trim($_POST["password"])) > 25) {
+    $password_err = "Password must be less than or equal to 25 characters.";
   } else {
     $password = trim($_POST["password"]);
   }
@@ -83,36 +87,48 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $confirm_password_err = "Password did not match.";
     }
   }
-  // Validate Name
-  if (empty(trim($_POST["name"]))) {
+
+// Validate Name
+if (empty(trim($_POST["name"]))) {
     $name_err = "Please insert a Name.";
-  } else {
+} elseif (strlen(trim($_POST["name"])) > 25) {
+    $name_err = "Name must be less than or equal to 25 characters.";
+} else {
     $name = trim($_POST["name"]);
-  }
+}
 
-
-
-  // Validate Number
-  if (empty(trim($_POST["number"]))) {
+// Validate Number
+if (empty(trim($_POST["number"]))) {
     $number_err = "Please insert parent number.";
-  } else {
+} elseif (!is_numeric(trim($_POST["number"]))) {
+    $number_err = "Please insert only numbers.";
+} elseif (strlen(trim($_POST["number"])) > 20) {
+    $number_err = "Number must be less than or equal to 20 characters.";
+} else {
     $number = trim($_POST["number"]);
-  }
+}
 
-  // Validate Email
-  if (empty(trim($_POST["email"]))) {
+
+// Validate Email
+if (empty(trim($_POST["email"]))) {
     $email_err = "Please insert parent email.";
-  } else {
+} elseif (strlen(trim($_POST["email"])) > 40) {
+    $email_err = "Email must be less than or equal to 40 characters.";
+} else {
     $email = trim($_POST["email"]);
-  }
+}
 
   // Validate Address
 
-  if (empty(trim($_POST["address"]))) {
+// Validate Address
+if (empty(trim($_POST["address"]))) {
     $address_err = "Please insert parent address.";
-  } else {
+} elseif (strlen(trim($_POST["address"])) > 40) {
+    $address_err = "Address must be less than or equal to 40 characters.";
+} else {
     $address = trim($_POST["address"]);
-  }
+}
+
 
   // Validate student_id
   
