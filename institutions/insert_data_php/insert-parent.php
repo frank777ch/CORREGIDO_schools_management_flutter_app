@@ -123,8 +123,8 @@ if (empty(trim($_POST["email"]))) {
 // Validate Address
 if (empty(trim($_POST["address"]))) {
     $address_err = "Please insert parent address.";
-} elseif (strlen(trim($_POST["address"])) > 40) {
-    $address_err = "Address must be less than or equal to 40 characters.";
+} elseif (strlen(trim($_POST["address"])) > 100) {
+    $address_err = "Address must be less than or equal to 100 characters.";
 } else {
     $address = trim($_POST["address"]);
 }
