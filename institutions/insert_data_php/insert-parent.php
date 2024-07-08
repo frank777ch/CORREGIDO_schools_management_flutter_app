@@ -91,8 +91,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 // Validate Name
 if (empty(trim($_POST["name"]))) {
     $name_err = "Please insert a Name.";
-} elseif (strlen(trim($_POST["name"])) > 25) {
-    $name_err = "Name must be less than or equal to 25 characters.";
+} elseif (strlen(trim($_POST["name"])) > 60) {
+    $name_err = "Name must be less than or equal to 60 characters.";
 } else {
     $name = trim($_POST["name"]);
 }
@@ -108,23 +108,23 @@ if (empty(trim($_POST["number"]))) {
     $number = trim($_POST["number"]);
 }
 
-
 // Validate Email
 if (empty(trim($_POST["email"]))) {
     $email_err = "Please insert parent email.";
 } elseif (strlen(trim($_POST["email"])) > 40) {
     $email_err = "Email must be less than or equal to 40 characters.";
+} elseif (!filter_var(trim($_POST["email"]), FILTER_VALIDATE_EMAIL)) {
+    $email_err = "Invalid email format. Please enter a valid email address.";
 } else {
     $email = trim($_POST["email"]);
 }
-
   // Validate Address
 
 // Validate Address
 if (empty(trim($_POST["address"]))) {
     $address_err = "Please insert parent address.";
-} elseif (strlen(trim($_POST["address"])) > 40) {
-    $address_err = "Address must be less than or equal to 40 characters.";
+} elseif (strlen(trim($_POST["address"])) > 100) {
+    $address_err = "Address must be less than or equal to 100 characters.";
 } else {
     $address = trim($_POST["address"]);
 }
