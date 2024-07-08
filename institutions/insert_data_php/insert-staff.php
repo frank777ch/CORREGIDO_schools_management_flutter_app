@@ -8,6 +8,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     exit;
 }
 
+
 // Include config file
 require_once "../config.php";
 
@@ -21,6 +22,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validate username
     if (empty(trim($_POST["username"]))) {
         $username_err = "Please enter a username.";
+    }else if(strlen(trim($_POST["username"]))>25){
+        $username_err = "The username must not exceed 25 characters.";
     } else {
         // Prepare a select statement
         $sql = "SELECT id FROM staffs WHERE username = ?";
@@ -71,7 +74,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     // Validate Name
     if (empty(trim($_POST["name"]))) {
-        $name_err = "Please insert a Name.";
+        $name_err = "Password did not match.";
+    }
+    else if(strlen(trim($_POST["name"]))>20){
+        $name_err = "The full name must not exceed 20 characters.";
     } else {
         $name = trim($_POST["name"]);
     }
@@ -81,14 +87,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validate Number
     if (empty(trim($_POST["number"]))) {
         $number_err = "Please insert staff member number.";
-    } else {
+    } 
+    else if(strlen(trim($_POST["number"]))>10){
+        $number_err = "The number must not exceed 10 characters.";
+
+    }else {
         $number = trim($_POST["number"]);
     }
 
     // Validate Email
     if (empty(trim($_POST["email"]))) {
         $email_err = "Please insert staff member email.";
-    } else {
+    } 
+    else if(strlen(trim($_POST["email"]))>30){
+        $email_err = "The email must not exceed 30 characters.";
+
+    }else {
         $email = trim($_POST["email"]);
     }
 
@@ -96,6 +110,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (empty(trim($_POST["address"]))) {
         $address_err= "Please insert staff member address.";
+    }
+    else if(strlen(trim($_POST["address"]))>15){
+        $address_err = "The address must not exceed 15 characters.";
     } else {
         $address = trim($_POST["address"]);
     }
@@ -104,7 +121,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (empty(trim($_POST["job"]))) {
         $job_err= "Please insert staff member job.";
-    } else {
+    } 
+    else if(strlen(trim($_POST["job"]))>10){
+        $job_err = "The job must not exceed 10 characters.";
+    }else {
         $job = trim($_POST["job"]);
     }
 
@@ -140,8 +160,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (mysqli_stmt_execute($stmt)) {
                 // Redirect to login page
                header("location: insert-staff.php");
-
-              
             } else {
                 echo "Something went wrong. Please try again later.";
             }
@@ -159,7 +177,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -208,14 +226,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <!-- create a navbar dropdown item -->
             <ul class="nav navbar-nav ml-auto">
                 <li class="nav-item dropdown ">
-                    <a class="navbar-toggler-icon" href="#" id="navbardrop" data-toggle="dropdown"></a>
+                    <a class="navbar-toggler-icon" href="#" id="navbardrop" data-toggle="dropdown">.</a>
                     <div class="dropdown-menu">
-
-           
                         <a class="dropdown-item" href="../welcome.php">Home</a>
                         <a class="dropdown-item" href="../reset-password.php">Reset Password</a>
                         <a class="dropdown-item" href="../logout.php">Log out</a>
-
                     </div>
                 </li>
             </ul>
@@ -231,49 +246,49 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                                 <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
-                                    <label>Username</label>
+                                    <label for="username">Username</label>
                                     <input type="text" name="username" class="form-control" value="<?php echo $username; ?>" aria-describedby="Username" placeholder="Enter Student Username">
                                     <span class="help-block" style="color:red"><?php echo $username_err; ?></span>
 
                                 </div>
                                 <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
-                                    <label>Password</label>
+                                    <label for="password">Password</label>
                                     <input type="password" name="password" class="form-control" value="<?php echo $password; ?>" placeholder="Enter Password">
                                     <span class="help-block" style="color:red"><?php echo $password_err; ?></span>
                                 </div>
 
                                 <div class="form-group <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
-                                    <label>Confirm Password</label>
+                                    <label for="confirm_password">Confirm Password</label>
                                     <input type="password" name="confirm_password" class="form-control" value="<?php echo $confirm_password; ?>" placeholder="Confirm Password">
                                     <span class="help-block" style="color:red"><?php echo $confirm_password_err; ?></span>
                                 </div>
 
                                 <div class="form-group <?php echo (!empty($name_err)) ? 'has-error' : ''; ?>">
-                                    <label>Full Name</label>
+                                    <label for="name">Full Name</label>
                                     <input type="text" name="name" class="form-control" value="<?php echo $name; ?>" placeholder="Enter Staff Member Full Name">
                                     <span class="help-block" style="color:red"><?php echo $name_err; ?></span>
                                 </div>
 
                                 <div class="form-group <?php echo (!empty($job_err)) ? 'has-error' : ''; ?>">
-                                    <label>Job</label>
+                                    <label for="job">Job</label>
                                     <input type="text" name="job" class="form-control" value="<?php echo $job; ?>" placeholder="Enter Staff Member Job">
                                     <span class="help-block" style="color:red"><?php echo $job_err; ?></span>
                                 </div>
 
                                 <div class="form-group <?php echo (!empty($address_err)) ? 'has-error' : ''; ?>">
-                                    <label>Address</label>
+                                    <label for="address">Address</label>
                                     <input type="text" name="address" class="form-control" value="<?php echo $address; ?>" placeholder="Enter Staff member Address">
                                     <span class="help-block" style="color:red"><?php echo $address_err; ?></span>
                                 </div>
 
                                 <div class="form-group <?php echo (!empty($number)) ? 'has-error' : ''; ?>">
-                                    <label>Phone Number</label>
+                                    <label for="number">Phone Number</label>
                                     <input type="text" name="number" class="form-control" value="<?php echo $number; ?>" placeholder="Enter Staff Member Phone Number">
                                     <span class="help-block" style="color:red"><?php echo $number_err; ?></span>
                                 </div>
 
                                 <div class="form-group <?php echo (!empty($email)) ? 'has-error' : ''; ?>">
-                                    <label>Email</label>
+                                    <label for="email">Email</label>
                                     <input type="text" name="email" class="form-control" value="<?php echo $email; ?>" placeholder="Enter Staff Member Email">
                                     <span class="help-block" style="color:red"><?php echo $email_err; ?></span>
                                 </div>
@@ -283,7 +298,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         <input type="submit" class="btn btn-primary" value="Submit">
                                     </div>
                                 </div>
-                                
                         </div>
                         </form>
                     </div>
