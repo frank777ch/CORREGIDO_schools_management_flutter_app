@@ -536,7 +536,7 @@ ALTER TABLE `medication`
 --
 ALTER TABLE `parents`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `username` (`username`) USING HASH,
+  ADD UNIQUE KEY `username` (`username`(191)),
   ADD KEY `school_id` (`school_id`),
   ADD KEY `student_id` (`student_id`);
 
@@ -560,7 +560,7 @@ ALTER TABLE `schedules`
 --
 ALTER TABLE `schools`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `username` (`username`) USING HASH;
+  ADD UNIQUE KEY `username` (`username`(191));
 
 --
 -- Indexes for table `sibiling`
@@ -582,7 +582,7 @@ ALTER TABLE `staffs`
 --
 ALTER TABLE `students`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `username` (`username`) USING HASH,
+  ADD UNIQUE KEY `username` (`username`(191)),
   ADD KEY `school_id` (`school_id`);
 
 --
@@ -598,7 +598,7 @@ ALTER TABLE `tasks`
 --
 ALTER TABLE `teachers`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `username` (`username`) USING HASH,
+  ADD UNIQUE KEY `username` (`username`(191)),
   ADD KEY `school_id` (`school_id`);
 
 --
